@@ -52,27 +52,22 @@ DB_USERNAME=username
 DB_PASSWORD=password
 ```   
 
-6. **To use *Mail-trap* for email notifications:**
-   *Update the .env file with your mail-trap credentials:*
+6. **Configure pusher:**
+   *Update the .env file with your pusher credentials:*
 ```dotenv
-MAIL_USERNAME=4cf9f54cd898ba
-MAIL_PASSWORD=ad11803b2ea0be
+BROADCAST_CONNECTION=pusher
+FILESYSTEM_DISK=local
+QUEUE_CONNECTION=database
+
+PUSHER_APP_KEY=1209a8ebf65e10052833
+PUSHER_APP_SECRET=1f1b9e48ed9115752eee
+PUSHER_APP_ID=1818843
+PUSHER_APP_CLUSTER=ap2
 ```
 
-7. **Import Postman & SQL file:**
-   import Postman collection, ostman environments and SQL file which are located under `setup_files`directory at the
-   root of the
-   directory:
-
-```
-├── hr_management_api
-│   └── app
-│   └── setup_files
-│       ├── HR Management System.postman_collection.json
-│       ├── local.postman_environment.json
-│       ├── dev.postman_environment.json
-│       ├── hr_management_api.sql
-```
+7. **Import Postman:**
+   import Postman collection that located on `setup_files`directory at the
+   root of the project folder
 
 OR
 
@@ -86,18 +81,19 @@ php artisan migrate --seed
 
 ```bash
 php artisan serve
-```   
+```
 
-9. **Access the API:**
-   Local and development environments in Postman have been configured
-   at http://localhost:8000 and https://hr-management-api.fly.dev respectively to interact with APIs.
-    
+9. **Start the queue:**
 
-10. **Login with default user**
+```bash
+php artisan queue:work
+```
+
+10. **Login with default user using Login API**
 
 ```dotenv
-USERNAME=nawas.abdulrahman@tornet.co
-PASSWORD=password
+USERNAME=azmir@gmail.com
+PASSWORD=1234567
 ```
 
 ## Tests
@@ -105,7 +101,7 @@ PASSWORD=password
 1. **Copy the example testing environment file:**
 
 ```bash
-cp .env.testing.example .env.testing 
+cp .env.example .env.testing 
 ```
 
 2. **Configure testing database:**
@@ -115,34 +111,25 @@ cp .env.testing.example .env.testing
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
-DB_DATABASE=test_database_name
-DB_USERNAME=test_database_username
-DB_PASSWORD=test_database_password
+DB_DATABASE=test_db
+DB_USERNAME=username
+DB_PASSWORD=password
 ```
 
 run tests:
 ```bash
 php artisan test    
 ```
-    
-or run it in parallel:
-```bash
-php artisan test --parallel
-```
 
 
 ## Used Packages
-For development:
-- [Pint](https://laravel.com/docs/11.x/pint)
-- [Paratest](https://github.com/paratestphp/paratest)
-
 For production:
-- [Laravel excel](https://docs.laravel-excel.com/3.1/getting-started/)
-- [Laravel sanctum](https://laravel.com/docs/11.x/sanctum)
+- [spatie/laravel-permission]
+- [pusher/pusher-php-server]
+- [opcodesio/log-viewer
+- [maatwebsite/excel]
+- [Laravel sanctum]
 
 
 ## CI/CD
-
-Continuous Integration and Continuous Deployment (CI/CD) are implemented for this application.
-Any changes pushed to the main branch will trigger an automatic deployment,
-ensuring that the latest version of the application is deployed instantly.
+has been implemented by using github action
