@@ -1,0 +1,14 @@
+version: '3'
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: task-management-bac
+    image: task-management:latest
+    command: ["bash", "/var/www/html/run.sh"]
+    ports:
+      - "8000:443"
+    volumes:
+      - ./:/var/www/html
+      - /var/www/html/envs/.task-management-env:/var/www/html/.env
