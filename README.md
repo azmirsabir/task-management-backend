@@ -1,66 +1,148 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+<p align="center"><a href="https://www.newroztelecom.com/" target="_blank">
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
 
-## About Laravel
+## Task Management Backend
+A Task Management backend powers applications by enabling task creation, assignment, tracking, and status updates.
+It provides APIs for managing users, permissions, tasks.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+<br>
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+The app deployed on https://shalawprinting.xyz:8004
 
-## Learning Laravel
+Documentation URL : http://shalawprinting.xyz:8080/swagger-ui/index.html#/
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Installation
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+Follow these steps to set up the project locally:
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+1. **Clone the repository:**
 
-## Laravel Sponsors
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+```bash
+git clone https://github.com/azmirsabir/task-management-backend.git
+```
 
-### Premium Partners
+2. **Install dependencies:**
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+```bash
+cd task-management-backend
+composer install
+```   
 
-## Contributing
+3. **Copy the example environment file:**
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+```bash
+cp .env.example .env
+```   
+4. **Generate application key:**
 
-## Code of Conduct
+```bash
+php artisan key:generate
+```   
+5. **Configure the database:**
+   *Update the .env file with your database credentials:*
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+```dotenv
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=db_name
+DB_USERNAME=username
+DB_PASSWORD=password
+```   
 
-## Security Vulnerabilities
+6. **To use *Mail-trap* for email notifications:**
+   *Update the .env file with your mail-trap credentials:*
+```dotenv
+MAIL_USERNAME=4cf9f54cd898ba
+MAIL_PASSWORD=ad11803b2ea0be
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+7. **Import Postman & SQL file:**
+   import Postman collection, ostman environments and SQL file which are located under `setup_files`directory at the
+   root of the
+   directory:
 
-## License
+```
+├── hr_management_api
+│   └── app
+│   └── setup_files
+│       ├── HR Management System.postman_collection.json
+│       ├── local.postman_environment.json
+│       ├── dev.postman_environment.json
+│       ├── hr_management_api.sql
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+OR
+
+ **Run database migrations and seeders:**
+
+```bash
+php artisan migrate --seed
+```   
+
+8. **Start the development server:**
+
+```bash
+php artisan serve
+```   
+
+9. **Access the API:**
+   Local and development environments in Postman have been configured
+   at http://localhost:8000 and https://hr-management-api.fly.dev respectively to interact with APIs.
+    
+
+10. **Login with default user**
+
+```dotenv
+USERNAME=nawas.abdulrahman@tornet.co
+PASSWORD=password
+```
+
+## Tests
+
+1. **Copy the example testing environment file:**
+
+```bash
+cp .env.testing.example .env.testing 
+```
+
+2. **Configure testing database:**
+   *Update the .env.testing file with testing database credentials:*
+
+```dotenv
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=test_database_name
+DB_USERNAME=test_database_username
+DB_PASSWORD=test_database_password
+```
+
+run tests:
+```bash
+php artisan test    
+```
+    
+or run it in parallel:
+```bash
+php artisan test --parallel
+```
+
+
+## Used Packages
+For development:
+- [Pint](https://laravel.com/docs/11.x/pint)
+- [Paratest](https://github.com/paratestphp/paratest)
+
+For production:
+- [Laravel excel](https://docs.laravel-excel.com/3.1/getting-started/)
+- [Laravel sanctum](https://laravel.com/docs/11.x/sanctum)
+
+
+## CI/CD
+
+Continuous Integration and Continuous Deployment (CI/CD) are implemented for this application.
+Any changes pushed to the main branch will trigger an automatic deployment,
+ensuring that the latest version of the application is deployed instantly.
