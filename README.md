@@ -95,6 +95,28 @@ USERNAME=azmir@gmail.com
 PASSWORD=1234567
 ```
 
+## Registerd artisan Commands
+1. **Create User Command syntax:**
+```bash
+php artisan make:user {name} {email} {password}
+```
+
+2. **Export tasks Command syntax:**
+```bash
+php artisan export:tasks filename.csv
+```
+
+3. **Import tasks Command syntax:**
+```bash
+php artisan import:tasks file.csv
+```
+
+4. **send alert expiry tasks Command syntax: used by a scheduler to send alert to the product owner :**
+```bash
+php artisan app:send-task-expiry-alert
+```
+
+
 ## Tests
 
 1. **Copy the example testing environment file:**
