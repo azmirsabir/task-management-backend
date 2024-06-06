@@ -69,27 +69,26 @@ PUSHER_APP_CLUSTER=ap2
    import Postman collection that located on `setup_files`directory at the
    root of the project folder
 
-OR
 
- **Run database migrations and seeders:**
+8. **Run database migrations and seeders:**
 
 ```bash
 php artisan migrate --seed
 ```   
 
-8. **Start the development server:**
+9. **Start the development server:**
 
 ```bash
 php artisan serve
 ```
 
-9. **Start the queue:**
+10. **Start the queue:**
 
 ```bash
 php artisan queue:work
 ```
 
-10. **Login with default user using Login API**
+11. **Login with default user using Login API**
 
 ```dotenv
 USERNAME=azmir@gmail.com
