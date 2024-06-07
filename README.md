@@ -151,6 +151,3 @@ For production:
 - [maatwebsite/excel]
 - [Laravel sanctum]
 
-
-## CI/CD
-has been implemented by using github action
