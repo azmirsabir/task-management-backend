@@ -10,6 +10,9 @@ The app is deployed on Linux server at: [shalawprinting.xyz:8004](https://shalaw
 
 Documentation URL: [shalawprinting.xyz:8080/swagger-ui/index.html#/](http://shalawprinting.xyz:8080/swagger-ui/index.html#/)
 
+Project Log : [shalawprinting.xyz:8004/log-viewer](https://shalawprinting.xyz:8004/log-viewer)
+
+
 ## Installation
 
 Follow these steps to set up the project locally:

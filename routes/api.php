@@ -2,13 +2,10 @@
   
   use App\Http\Controllers\AuthController;
   use App\Http\Middleware\StatusTransition;
-  use App\Mail\TaskAssigned;
-  use Illuminate\Support\Facades\Mail;
   use Illuminate\Support\Facades\Route;
   use App\Http\Controllers\UsersController;
   use App\Http\Controllers\PermissionController;
   use App\Http\Controllers\TaskController;
-  use Illuminate\Mail\Message;
   
   
   Route::group(['prefix' => 'auth'], function () {
@@ -38,9 +35,6 @@
     });
   });
   
-
-  
-
 
   
 
