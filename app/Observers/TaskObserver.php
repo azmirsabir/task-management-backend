@@ -2,6 +2,7 @@
 
 namespace App\Observers;
 
+use App\Jobs\SendTaskAssignedEmail;
 use App\Models\Task;
 use App\Models\TaskLog;
 use App\Models\User;
@@ -20,12 +21,15 @@ class TaskObserver
           if ($newStatus === TaskStatus::PO_REVIEW) {
             $task->assigned_to = $task->created_by;
             $details = "Status changed to " . $newStatus;
+            $this->sendMailInBackground($task);
           } elseif ($newStatus == TaskStatus::READY_FOR_TEST) {
             $task->assigned_to = User::testerWithLessTask()->first()->id;
             $details = "Status changed to " . $newStatus;
+            $this->sendMailInBackground($task);
           } elseif (in_array($newStatus, [TaskStatus::IN_PROGRESS, TaskStatus::DONE])) {
             $task->assigned_to = TaskLog::taskDeveloper($task->id)->first()->assigned_to;
             $details = "Status changed to " . $newStatus;
+            $this->sendMailInBackground($task);
           }
           $task->save();
         });
@@ -42,5 +46,11 @@ class TaskObserver
         'details'=>$details,
         "assigned_to"=>$task->assigned_to
       ]);
+    }
+    
+    public function sendMailInBackground($task){
+      if ($task->isDirty('assigned_to')) {
+        SendTaskAssignedEmail::dispatch($task);
+      }
     }
 }

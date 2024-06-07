@@ -41,7 +41,7 @@ Follow these steps to set up the project locally:
 
 5. **Configure the database:**
 
-    *Update the .env file with your database credentials:*
+   *Update the .env file with your database credentials:*
 
     ```dotenv
     DB_CONNECTION=mysql
@@ -54,7 +54,7 @@ Follow these steps to set up the project locally:
 
 6. **Configure pusher:**
 
-    *Update the .env file with your pusher credentials:*
+   *Update the .env file with your pusher credentials:*
 
     ```dotenv
     BROADCAST_CONNECTION=pusher
@@ -67,29 +67,45 @@ Follow these steps to set up the project locally:
     PUSHER_APP_CLUSTER=ap2
     ```
 
-7. **Import Postman collection:**
+7. **Configure mail:**
 
-    Import the Postman collection located in the `setup_files` directory at the root of the project folder.
+*Update the .env file with your email info:*
 
-8. **Run database migrations and seeders:**
+```dotenv
+MAIL_MAILER=log
+MAIL_FROM_ADDRESS="username@gmail.com"
+MAIL_FROM_NAME="${APP_NAME}"
+MAIL_DRIVER=smtp
+MAIL_HOST=smtp.googlemail.com
+MAIL_PORT=465
+MAIL_USERNAME=username@gmail.com
+MAIL_PASSWORD=password
+MAIL_ENCRYPTION=ssl
+```
+
+8. **Import Postman collection:**
+
+   Import the Postman collection located in the `setup_files` directory at the root of the project folder.
+
+9. **Run database migrations and seeders:**
 
     ```bash
     php artisan migrate --seed
     ```
 
-9. **Start the development server:**
+10. **Start the development server:**
 
     ```bash
     php artisan serve
     ```
 
-10. **Start the queue:**
+11. **Start the queue:**
 
     ```bash
     php artisan queue:work
     ```
 
-11. **Login with the default user (Product Owner) using the Login API:**
+12. **Login with the default user (Product Owner) using the Login API:**
 
     ```dotenv
     USERNAME=azmir@gmail.com
@@ -110,7 +126,7 @@ Follow these steps to set up the project locally:
     php artisan export:tasks filename.csv
     ```
 
-3. **Import Tasks Command:**
+3. **Import Tasks Command, it imports with job batch, and update the progress with websocker:**
 
     ```bash
     php artisan import:tasks file.csv
@@ -118,7 +134,7 @@ Follow these steps to set up the project locally:
 
 4. **Send Alert Expiry Tasks Command:**
 
-    *Used by a scheduler to send an alert to the product owner:*
+   *Used by a scheduler to send an alert to the product owner:*
 
     ```bash
     php artisan app:send-task-expiry-alert
@@ -134,7 +150,7 @@ Follow these steps to set up the project locally:
 
 2. **Configure the testing database:**
 
-    *Update the .env.testing file with testing database credentials:*
+   *Update the .env.testing file with testing database credentials:*
 
     ```dotenv
     DB_CONNECTION=mysql

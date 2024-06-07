@@ -6,6 +6,7 @@ use App\Http\Requests\ChangeTaskStatusRequest;
 use App\Http\Requests\TaskStoreRequest;
 use App\Http\Requests\TaskUpdateRequest;
 use App\Http\Resources\TaskResource;
+use App\Jobs\SendTaskAssignedEmail;
 use App\Models\Task;
 use App\Models\User;
 use App\Traits\ApiResponse;
@@ -14,6 +15,7 @@ use Illuminate\Http\Response;
 use Illuminate\Routing\Controllers\HasMiddleware;
 use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Support\Facades\Bus;
+use Illuminate\Support\Facades\Log;
 
 class TaskController extends Controller implements HasMiddleware
 {
@@ -64,6 +66,9 @@ class TaskController extends Controller implements HasMiddleware
         abort(403, "The user is not a developer");
       
         $task->update(['assigned_to'=>$user->id]);
+        
+        SendTaskAssignedEmail::dispatch($task);
+        
         return $this->jsonResponse(['message' => 'Task '.$task->id.' assigned to user '.$user->name]);
     }
     public function changeTaskStatus(ChangeTaskStatusRequest $request,Task $task){
