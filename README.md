@@ -88,7 +88,7 @@ php artisan serve
 php artisan queue:work
 ```
 
-11. **Login with default user using Login API**
+11. **Login with default user(Product Owner) using Login API**
 
 ```dotenv
 USERNAME=azmir@gmail.com
