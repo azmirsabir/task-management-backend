@@ -6,7 +6,7 @@ A Task Management backend powers applications by enabling task creation, assignm
 
 <br>
 
-The app is deployed at: [shalawprinting.xyz:8004](https://shalawprinting.xyz:8004)
+The app is deployed on Linux server at: [shalawprinting.xyz:8004](https://shalawprinting.xyz:8004)
 
 Documentation URL: [shalawprinting.xyz:8080/swagger-ui/index.html#/](http://shalawprinting.xyz:8080/swagger-ui/index.html#/)
 
